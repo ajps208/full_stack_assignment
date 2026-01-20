@@ -14,7 +14,7 @@ const urlRegex = /^(https?:\/\/)?([\w\-])+\.{1}([a-zA-Z]{2,63})([\w\-._~:/?#[\]@
 router.post("/", async (req, res) => {
   try {
 
-    const { name, email, phoneNumber, link, dob } = req.body;
+    const { name, email, phoneNumber, link, dob } = req?.body;
 
     // Required fields
     if (!name || !email || !phoneNumber) {
