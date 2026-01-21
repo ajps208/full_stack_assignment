@@ -1,7 +1,3 @@
-import React from 'react'
-
 export const Loader = () => {
-  return (
-    <div>Loader</div>
-  )
-}
+  return <p style={{ textAlign: "center" }}>Loading...</p>;
+};
