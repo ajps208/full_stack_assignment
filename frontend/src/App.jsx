@@ -4,18 +4,25 @@ import { Loader } from "./Components/Loader";
 import { Header } from "./Components/Header";
 import { Form } from "./Components/Form";
 import { SuccessTable } from "./Components/SuccessTable";
-
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-<ToastContainer autoClose={3000} />;
 
 export default function App() {
   const [view, setView] = useState("form");
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [initialLoading, setInitialLoading] = useState(true);
 
-  // fetch success data
+  // Show loader for 500ms
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setInitialLoading(false);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Fetch success data
   useEffect(() => {
     if (view === "success") {
       setLoading(true);
@@ -26,17 +33,34 @@ export default function App() {
     }
   }, [view]);
 
-  return (
-    <>
-    {/* header */}
-      <Header view={view} setView={setView} />
-      {/* show form  and success table*/}
-      {view === "form" && <Form />}
-      {view === "success" &&
-        (loading ? <Loader /> : <SuccessTable data={data} />)}
+  // Show loader first
+  if (initialLoading) {
+    return (
+      <div className="bg-[#f8fafc] min-h-screen flex items-center justify-center">
+        <Loader />
+      </div>
+    );
+  }
 
-      {/* show toast */}
+  return (
+    <div className="bg-[#f8fafc] text-slate-900 antialiased min-h-screen">
+      {/* Header */}
+      <Header view={view} setView={setView} />
+
+      {/* Main */}
+      <main className="max-w-4xl mx-auto px-4 py-6">
+        <div className="bg-white rounded-2xl border border-slate-100 shadow-lg">
+          <div className="p-6">
+            {view === "form" && <Form />}
+
+            {view === "success" &&
+              (loading ? <Loader /> : <SuccessTable data={data} />)}
+          </div>
+        </div>
+      </main>
+
+      {/* Toast */}
       <ToastContainer position="top-right" autoClose={3000} />
-    </>
+    </div>
   );
 }

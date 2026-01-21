@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+/* PhoneInput underline theme */
+.PhoneInputInput {
+  @apply outline-none border-none bg-transparent py-2 w-full text-gray-800;
+}
+
+.PhoneInput {
+  @apply border-b-2 border-gray-100 focus-within:border-blue-600 transition-colors duration-300;
+}
