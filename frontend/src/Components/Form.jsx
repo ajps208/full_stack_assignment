@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import PhoneInput, { isPossiblePhoneNumber } from "react-phone-number-input";
 import "react-phone-number-input/style.css";
+import "react-phone-number-input/style.css";
+import { toast } from "react-toastify";
 
 import { api } from "../Services/api";
 import { formatDOB } from "../Helpers/helpers";
@@ -24,14 +26,12 @@ const isValidURL = (url) => {
   }
 };
 
-
 export const Form = ({ refresh }) => {
   const [form, setForm] = useState(INITIAL_FORM);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
-
-//   handle change 
+  //   handle change
   const handleChange = (field, value) => {
     setForm((prev) => ({ ...prev, [field]: value }));
 
@@ -40,7 +40,7 @@ export const Form = ({ refresh }) => {
     }
   };
 
-// form validation
+  // form validation
   const validate = () => {
     const newErrors = {};
 
@@ -65,25 +65,45 @@ export const Form = ({ refresh }) => {
     return Object.keys(newErrors).length === 0;
   };
 
-// form submission
+  // form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!validate()) return;
 
-    setLoading(true);
-
-    const payload = {
-      ...form,
-      dob: form.dob ? formatDOB(form.dob) : null,
-    };
+    if (!validate()) {
+      toast.error("Please fix the highlighted errors");
+      return;
+    }
 
     try {
+      setLoading(true);
+
+      const payload = {
+        ...form,
+        dob: form.dob ? formatDOB(form.dob) : null,
+      };
+
       await api.post("/", payload);
+
+      toast.success("Form submitted successfully 🎉");
       setForm(INITIAL_FORM);
       setErrors({});
-      refresh();
     } catch (err) {
-      console.error("Form submission failed:", err);
+      console.error("API Error:", err);
+
+      let errorMessage = "Something went wrong";
+
+      if (err.response) {
+        errorMessage =
+          err.response.data?.message ||
+          err.response.data?.error ||
+          "Internal Server Error";
+      } else if (err.request) {
+        errorMessage = "Server not responding";
+      } else {
+        errorMessage = err.message;
+      }
+
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }
@@ -118,9 +138,7 @@ export const Form = ({ refresh }) => {
         value={form.phoneNumber}
         onChange={(value) => handleChange("phoneNumber", value)}
       />
-      {errors.phoneNumber && (
-        <p className="error">{errors.phoneNumber}</p>
-      )}
+      {errors.phoneNumber && <p className="error">{errors.phoneNumber}</p>}
 
       {/* URL */}
       <input
@@ -138,9 +156,7 @@ export const Form = ({ refresh }) => {
       />
       {errors.dob && <p className="error">{errors.dob}</p>}
 
-      <button disabled={loading}>
-        {loading ? "Submitting..." : "Submit"}
-      </button>
+      <button disabled={loading}>{loading ? "Submitting..." : "Submit"}</button>
     </form>
   );
 };
