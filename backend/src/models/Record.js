@@ -7,7 +7,7 @@ const recordSchema = new mongoose.Schema(
     email: { type: String, required: true },
     phoneNumber: { type: String, required: true },
     link: String,
-    dob: String,
+    dob: Date ,
     status: {
       type: String,
       enum: ["PENDING", "SUCCESS", "FAILED"],
