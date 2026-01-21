@@ -8,7 +8,7 @@ export const Header = ({ view, setView }) => {
         </h2>
 
         <nav className="flex gap-1 bg-slate-100 p-1 rounded-lg">
-            {/* Form Button */}
+          {/* Form Button */}
           <button
             onClick={() => setView("form")}
             className={`px-4 py-1.5 rounded-md text-sm font-medium transition ${

@@ -24,7 +24,7 @@ export default function App() {
   }, [view]);
 
   return (
-    <div className="bg-[#f8fafc] text-slate-900 antialiased mih-h-screen">
+    <div className="bg-[#f8fafc] text-slate-900 antialiased h-screen">
       {/* Header */}
       <Header view={view} setView={setView} />
 
@@ -41,7 +41,7 @@ export default function App() {
       </main>
       
       {/* Toast container to notify */}
-      <ToastContainer position="bottom-center" autoClose={3000} />
+      <ToastContainer position="top-right" autoClose={3000} />
     </div>
   );
 }
