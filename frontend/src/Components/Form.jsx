@@ -167,7 +167,7 @@ export const Form = () => {
           type="date"
           value={form.dob}
           onChange={(e) => updateField("dob", e.target.value)}
-          className="w-full py-2 bg-transparent border-b-2 border-gray-100 outline-none focus:border-blue-600 transition"
+          className="w-full text-sm py-2 bg-transparent border-b-2 border-gray-100 outline-none focus:border-blue-600 transition uppercase"
         />
         {errors.dob && (
           <p className="text-[10px] text-red-500 mt-1 font-semibold uppercase">

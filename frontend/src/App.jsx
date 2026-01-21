@@ -11,8 +11,18 @@ export default function App() {
   const [view, setView] = useState("form");
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [initialLoading, setInitialLoading] = useState(true);
 
-  // fetch data
+  // Show loader for 500ms
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setInitialLoading(false);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Fetch success data
   useEffect(() => {
     if (view === "success") {
       setLoading(true);
@@ -23,8 +33,17 @@ export default function App() {
     }
   }, [view]);
 
+  // Show loader first
+  if (initialLoading) {
+    return (
+      <div className="bg-[#f8fafc] min-h-screen flex items-center justify-center">
+        <Loader />
+      </div>
+    );
+  }
+
   return (
-    <div className="bg-[#f8fafc] text-slate-900 antialiased h-screen">
+    <div className="bg-[#f8fafc] text-slate-900 antialiased min-h-screen">
       {/* Header */}
       <Header view={view} setView={setView} />
 
@@ -32,15 +51,15 @@ export default function App() {
       <main className="max-w-4xl mx-auto px-4 py-6">
         <div className="bg-white rounded-2xl border border-slate-100 shadow-lg">
           <div className="p-6">
-            {/*form or success table  */}
             {view === "form" && <Form />}
+
             {view === "success" &&
               (loading ? <Loader /> : <SuccessTable data={data} />)}
           </div>
         </div>
       </main>
-      
-      {/* Toast container to notify */}
+
+      {/* Toast */}
       <ToastContainer position="top-right" autoClose={3000} />
     </div>
   );
