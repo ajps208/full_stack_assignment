@@ -72,6 +72,7 @@ router.post("/", async (req, res) => {
   }
 });
 
+
 // Get all records endpoint(GET http://localhost:5000/api/records/success)
 router.get("/success", async (req, res) => {
   const data = await Record.find({ status: "SUCCESS" });

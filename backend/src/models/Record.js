@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+// Record schema
 const recordSchema = new mongoose.Schema(
   {
     uid: { type: String, required: true, unique: true },

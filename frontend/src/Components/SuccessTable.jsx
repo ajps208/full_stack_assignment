@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { formatDate } from "../Helpers/helpers";
 
 
-
+// Pagination constants
 const ITEMS_PER_PAGE = 5;
 
 export const SuccessTable = ({ data = [] }) => {

@@ -36,14 +36,14 @@ export default function App() {
   // Show loader first
   if (initialLoading) {
     return (
-      <div className="bg-[#f8fafc] min-h-screen flex items-center justify-center">
+      <div className="bg-[#e8f3fd] min-h-screen flex items-center justify-center">
         <Loader />
       </div>
     );
   }
 
   return (
-    <div className="bg-[#f8fafc] text-slate-900 antialiased min-h-screen">
+    <div className="bg-[#e8f3fd] text-slate-900 antialiased min-h-screen">
       {/* Header */}
       <Header view={view} setView={setView} />
 
