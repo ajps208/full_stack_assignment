@@ -134,7 +134,7 @@ export const Form = () => {
 
       {/* Phone */}
       <div className="mb-6">
-        <label className="block text-xs text-gray-400 mb-1">
+        <label className="block text-xs text-gray-600 mb-1">
           Phone Number <span className="text-red-500">*</span>
         </label>
         <PhoneInput
@@ -160,7 +160,7 @@ export const Form = () => {
 
       {/* DOB */}
       <div className="mb-6">
-        <label className="block text-xs text-gray-400 mb-1">
+        <label className="block text-xs text-gray-600 mb-1">
           Date of Birth
         </label>
         <input
@@ -184,7 +184,7 @@ export const Form = () => {
         {loading ? "Processing..." : "Submit"}
       </button>
 
-      <p className="text-xs text-gray-400 text-center mt-3">
+      <p className="text-xs text-gray-600 text-center mt-3">
         Fields marked with <span className="text-red-500 font-semibold">*</span> are required
       </p>
     </form>
