@@ -8,4 +8,5 @@ import "./jobs/batchJob.js";
 // Connect to DB
 connectDB();
 
+app.get("/", (req, res) => res.send("Server is live"));
 app.listen(process.env.PORT || 5000, () => {console.log("Server running on port 5000");});

@@ -11,6 +11,16 @@ Only successfully processed records are displayed on the frontend.
 
 ---
 
+## 🌍 Deployment
+
+Frontend (Vercel) : https://full-stack-assignmentfrontend.vercel.app/
+Backend (Render) : https://full-stack-assignment-backend-l322.onrender.com/
+Database: MongoDB Atlas
+GitHub Repo: https://github.com/ajps208/full_stack_assignment
+Environment variables are configured securely for production.
+
+---
+
 ## 🏗️ Architecture Overview
 
 Frontend (React + Tailwind)
@@ -32,6 +42,7 @@ External API
 ## ⚙️ Tech Stack
 
 ### Frontend
+
 - React
 - Tailwind CSS
 - Axios
@@ -39,6 +50,7 @@ External API
 - react-toastify
 
 ### Backend
+
 - Node.js
 - Express.js
 - MongoDB (Mongoose)
@@ -49,66 +61,70 @@ External API
 
 ## 📁 Mono-Repo Structure
 
-full_stack_assignment/
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── FloatingInput.jsx
-│   │   │   ├── Header.jsx
-│   │   │   ├── Form.jsx
-│   │   │   ├── SuccessTable.jsx
-│   │   │   └── Loader.jsx
-│   │   ├── Helpers/helpers.js
-│   │   ├── Services/api.js
-│   │   ├── App.jsx
-│   │   └── main.jsx
-│   └── package.json
-│
-├── backend/
-│   ├── src/
-│   │   ├── config/
-│   │   │   └── db.js
-│   │   ├── helpers/
-│   │   │   └── helpers.js
-│   │   ├── models/
-│   │   │   └── Record.js
-│   │   ├── routes/
-│   │   │   └── record.routes.js
-│   │   ├── jobs/
-│   │   │   └── batchJob.js
-│   │   ├── services/
-│   │   │   └── externalApi.js
-│   │   ├── app.js
-│   │   └── server.js
-│   └── package.json
-│
-└── README.md
+full-stack-assignment/
+
+- frontend/
+  - src/
+    - components/
+      - floatingInput.jsx
+      - Header.jsx
+      - Form.jsx
+      - SuccessTable.jsx
+      - Loader.jsx
+    - Helpers/
+      - helpers.js
+    - Services/
+      - api.js
+    - App.css
+    - App.jsx
+    - index.css
+    - main.jsx
+  - package.json
+
+- backend/
+  - src/
+    - config/db.js
+    - helpers/formatDate.js
+    - models/Record.js
+    - routes/record.routes.js
+    - jobs/batchJob.js
+    - services/externalApi.js
+    - app.js
+    - server.js
+  - package.json
+
+- README.md
 
 ---
 
 ## 🔄 Application Flow (End-to-End)
 
 ### 1. Frontend Load
+
 - Fetches records with SUCCESS status
 - Displays loading indicator while fetching
 
 ### 2. Form Submission
+
 - User submits data via form
 - Client-side validation applied
 - Data sent to backend API
 
 ### 3. Backend Processing
+
 - Validates request data
 - Stores record with status PENDING
 - Generates unique numeric ID using nanoid
 
 ### 4. Scheduled Batch Job
+
 - Runs every 2 hours
 - Picks up to 10 records with status PENDING or FAILED
 - Sends batch to external API
 - Updates record status based on API response
 
 ### 5. Frontend Display
+
 - Only records marked SUCCESS are shown to users
 
 ---
@@ -159,16 +175,6 @@ npm run dev
 
 ---
 
-## 🌍 Deployment
-
-Frontend: Vercel  
-Backend: Render  
-Database: MongoDB Atlas
-
-Environment variables are configured securely for production.
-
----
-
 ## 🔀 Git Workflow & Branching
 
 - Mono-repo with feature-based branches
@@ -178,6 +184,7 @@ Environment variables are configured securely for production.
 - No direct commits to main
 
 Example Branches
+
 - feature/backend-api
 - feature/backend-batch-job
 - feature/frontend-ui-tailwind
