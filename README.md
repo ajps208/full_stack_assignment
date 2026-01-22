@@ -13,29 +13,24 @@ Only successfully processed records are displayed on the frontend.
 
 ## 🌍 Deployment
 
-Frontend (Vercel) : https://full-stack-assignmentfrontend.vercel.app/
-Backend (Render) : https://full-stack-assignment-backend-l322.onrender.com/
-Database: MongoDB Atlas
-GitHub Repo: https://github.com/ajps208/full_stack_assignment
+- Frontend (Vercel) : https://full-stack-assignmentfrontend.vercel.app/
+- Backend (Render) : https://full-stack-assignment-backend-l322.onrender.com/
+- GitHub Repo: https://github.com/ajps208/full_stack_assignment
+- Database: MongoDB Atlas
+
 Environment variables are configured securely for production.
 
 ---
 
 ## 🏗️ Architecture Overview
 
-Frontend (React + Tailwind)
-|
-| REST API
-v
-Backend (Node.js + Express)
-|
-| Database (MongoDB)
-v
-Scheduler (Cron Job)
-|
-| Batch API Call (every 2 hours)
-v
-External API
+- Frontend: React + Tailwind  
+- Communication: REST API  
+- Backend: Node.js + Express  
+- Database: MongoDB  
+- Scheduler: Cron Job  
+- Batch Processing: Runs every 2 hours  
+- External Integration: External API
 
 ---
 
